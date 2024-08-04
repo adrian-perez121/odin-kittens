@@ -4,6 +4,10 @@ class KittensController < ApplicationController
     @kittens = Kitten.all
   end
 
+  def show
+    @kitten = Kitten.find(params[:id])
+  end
+
   def new
     @kitten = Kitten.new
   end
@@ -12,7 +16,7 @@ class KittensController < ApplicationController
     @kitten = Kitten.new(kitten_params)
 
     if @kitten.save
-      redirect_to kittens_path
+      redirect_to @kitten
     else
       render :new, status: :unprocessable_entity
     end
